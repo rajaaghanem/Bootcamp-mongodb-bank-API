@@ -188,7 +188,44 @@ function enoughMoney(theUser, moneyAmount) {
   }
 
 
-  router.patch("/api/users/withdraw/:id", handleWithdraw);
+  router.patch("/api/users/transfer/:id", handleTransfer);
+
+  async function handleTransfer (req, res){
+    const _idTrans = req.params.id;
+    const _idRecieve = req.body.id;
+    const amount = req.body.amount;
+
+    if (amount < 0) res.status(404).send("Can't transfer negative number");
+ 
+    try{
+        const transfer = await User.findById(_idTrans);
+        const recevier = await User.findById(_idRecieve);
+        if(!(transfer || recevier)) return res.status(404).send("user not found");
+
+        if (transfer.cash + transfer.credit > amount) {
+            tranferUser = enoughMoney(transfer, amount);
+            reciverUser = { passID:recevier.passID, cash:recevier.cash, credit: recevier.credit + amount };
+
+            const updatedTrans = await User.findByIdAndUpdate(_idTrans, tranferUser, {
+                new: true,
+                runValidators: true,
+            })
+
+            const updatedrecevier = await User.findByIdAndUpdate(_idRecieve, reciverUser, {
+                new: true,
+                runValidators: true,
+            })
+
+            res.status(200).send([updatedTrans , updatedrecevier]);
+        }else {
+            res.status(404).send("Not enough money");
+        }
+        
+    }catch(e){
+        res.status(400).send(e.message);
+    }
+  }
+
 //update a product to become active/not active and change the value of its discount.
 // router.patch("/api/users/active/:id", async (req, res) => {
 //   const _id = req.params.id;
