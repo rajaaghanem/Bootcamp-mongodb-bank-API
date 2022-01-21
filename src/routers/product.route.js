@@ -3,9 +3,9 @@ const Product = require("../models/product");
 const router = express.Router();
 
 router.post("/api/products", async (req, res) => {
-  const product = new Product(req.body);
-
+  let product = new Product(req.body);
   try {
+    product = JSON.stringify(product);
     await product.save();
     res.status(200).send(product);
   } catch (e) {
