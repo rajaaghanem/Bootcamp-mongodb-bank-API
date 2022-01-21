@@ -163,7 +163,7 @@ function App() {
       </div>
       
       <div className='cards-container'>{showUsers()}</div>
-      {error}
+      <div className='error-container'>{error}</div>
       
     </div>
   );

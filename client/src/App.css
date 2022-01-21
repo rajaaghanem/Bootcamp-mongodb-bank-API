@@ -64,3 +64,16 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.error-container {
+  display: flex;
+  padding: 2rem;
+  border-radius: 2rem;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  color: rgb(189, 83, 83);
+  font-size: 3rem;
+  justify-items: center;
+}
