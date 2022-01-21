@@ -72,7 +72,7 @@ function App() {
       amount: Number(amount)
     }
     try{
-      if(!userId) throw new Error("Must Enter an id");
+      if(!userId || !amount) throw new Error("One field or more are missing");
       const { data } = await myApi.patch(`/users/deposite/${userId}`, obj);
       setUsers([data]);
       console.log(data);
@@ -90,7 +90,7 @@ function App() {
       amount: Number(amount)
     }
     try{
-      if(!amount) throw new Error("Amount of money is missing");
+      if(!userId || !amount) throw new Error("One field or more are missing");
       const { data } = await myApi.patch(`/users/credit/${userId}`, obj);
       setUsers([data]);
       console.log(data);
@@ -107,7 +107,7 @@ function App() {
       amount: Number(amount)
     }
     try{
-      if(!amount) throw new Error("Amount of money is missing");
+      if(!userId || !amount) throw new Error("One field or more are missing");
       const { data } = await myApi.patch(`/users/withdraw/${userId}`, obj);
       setUsers([data]);
       console.log(data);
@@ -126,7 +126,7 @@ function App() {
        id: transfer,
      }
     try{
-      if(!amount || !transfer) throw new Error("One field or more are missing")
+      if(!amount || !transfer || !userId) throw new Error("One field or more are missing")
       const { data } = await myApi.patch(`/users/transfer/${userId}`, obj);
       setUsers(data);
       console.log(data);
