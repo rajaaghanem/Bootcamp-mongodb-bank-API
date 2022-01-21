@@ -10,7 +10,7 @@ function App() {
 
   const postReq = async () => {
     let obj = {
-      passID: "6789",
+      passID: "1213",
       cash: 1000,
       credit: 200,
     };
