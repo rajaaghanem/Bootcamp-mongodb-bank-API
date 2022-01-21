@@ -2,35 +2,28 @@
 import myApi from "./api/Api";
 
 function App() {
+  //get all users
   const getReq = async () => {
     const { data } = await myApi.get("/users");
     console.log(data);
   };
 
-  // const postReq = async () => {
-  //   let obj = {
-  //     name: "red hat",
-  //     category: "hats",
-  //     isActive: true,
-  //       details: {
-  //         description: "nice stylish yellow hat ",
-  //         Price: 30,
-  //         discount: 0,
-  //         array: ["hat", "yellow"],
-  //         phone: "0526879443"
-  //       }
-  //     }
-    // obj= JSON.stringify(obj)
-  //   const { data } = await myApi.post("/products", obj);
-  //   console.log(data);
-  // };
+  const postReq = async () => {
+    let obj = {
+      passID: "6789",
+      cash: 1000,
+      credit: 200,
+    };
+    const { data } = await myApi.post("/users", obj);
+    console.log(data);
+  };
 
   return (
     <div className="App">
       {" "}
       Hello World!
       <button onClick={getReq}>get</button>
-      {/* <button onClick={postReq}>post</button> */}
+      <button onClick={postReq}>add user</button>
     </div>
   );
 }
