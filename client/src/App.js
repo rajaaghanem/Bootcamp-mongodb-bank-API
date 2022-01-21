@@ -8,7 +8,7 @@ function App() {
   };
 
   const postReq = async () => {
-    const obj = {
+    let obj = {
       name: "red hat",
       category: "hats",
       isActive: true,
@@ -20,6 +20,7 @@ function App() {
           phone: "0526879443"
         }
       }
+    // obj= JSON.stringify(obj)
     const { data } = await myApi.post("/products", obj);
     console.log(data);
   };
