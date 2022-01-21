@@ -30,7 +30,7 @@ function App() {
       {" "}
       Hello World!
       <button onClick={getReq}>get</button>
-      <button onClick={postReq}>post</button>
+      {/* <button onClick={postReq}>post</button> */}
     </div>
   );
 }
