@@ -42,6 +42,7 @@ function App() {
     setTransfer(e.target.value);
   }
 
+  //add new user
   const postReq = async () => {
     setUsers([]);
     setError("");
@@ -100,6 +101,7 @@ function App() {
     }
   }
 
+  //Withdraw money from a user account
   const postWithdrawReq = async ()=>{
     setUsers([]);
     setError("");
