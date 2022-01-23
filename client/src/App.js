@@ -12,20 +12,6 @@ function App() {
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
 
-  //get all users
-  const getReq = async () => {
-    setUsers([]);
-    setError("");
-    try{
-      const { data } = await myApi.get("/users");
-      setUsers(data);
-      console.log(data);
-    }catch(e){
-      setError(e.message);
-      console.log(error);
-    }
-  };
-
   const handleId =(e)=>{
     setUserId(e.target.value);
   }
@@ -41,6 +27,20 @@ function App() {
   const  handleTransfer=(e)=>{
     setTransfer(e.target.value);
   }
+
+  //get all users
+  const getReq = async () => {
+    setUsers([]);
+    setError("");
+    try{
+      const { data } = await myApi.get("/users");
+      setUsers(data);
+      console.log(data);
+    }catch(e){
+      setError(e.message);
+      console.log(error);
+    }
+  };
 
   //add new user
   const postReq = async () => {
@@ -119,7 +119,7 @@ function App() {
     }
   }
 
-
+  //Transfer money from one user to another
    const postTransferReq = async ()=>{
     setUsers([]);
     setError("");
